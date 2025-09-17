@@ -17,10 +17,6 @@ jobs:
       - name: Release Please
         uses: googleapis/release-please-action@v4
         with:
-          # Bruk PAT slik at Release PR og merges kan trigge andre workflows
           token: ${{ secrets.MY_RELEASE_PLEASE_TOKEN }}
-
-          # Manifest-modus (styrt av filer i repoet)
-          manifest: true
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
