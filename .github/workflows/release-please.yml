@@ -1,0 +1,26 @@
+name: release-please
+
+on:
+  push:
+    branches: [main]
+
+# Viktig: disse lar actionen opprette PR'er, oppdatere filer og skrive releases
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release Please
+        uses: googleapis/release-please-action@v4
+        with:
+          # Bruk PAT slik at Release PR og merges kan trigge andre workflows
+          token: ${{ secrets.MY_RELEASE_PLEASE_TOKEN }}
+
+          # Manifest-modus (styrt av filer i repoet)
+          manifest: true
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
